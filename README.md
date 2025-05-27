@@ -65,7 +65,7 @@ sudo nano /etc/bind/zones/db.midominio.com
 ```
 
 
-#### c. Zona inversa (`db.192`)
+#### c. Zona inversa (`rev.1.168.192.db`)
 
 ```bash
 sudo nano /etc/bind/zones/rev.1.168.192.db

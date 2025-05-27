@@ -151,3 +151,7 @@ Por estas razones, aunque técnicamente es posible configurar `chroot`, no es pr
 ## Conclusiones
 
 Este proyecto demostró cómo implementar un servidor DNS local en un entorno WSL de forma eficaz. Se aprendió a configurar los archivos fundamentales de BIND, definir zonas DNS y verificar su funcionamiento. Aunque el servidor solo está disponible localmente, proporciona una base sólida para entornos más complejos o productivos.
+
+
+## Anexos
+- Capturas de pantalla: https://github.com/valri2104/Telematica-DNS-BIND/wiki/Capturas-de-pantalla

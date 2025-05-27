@@ -1,0 +1,9 @@
+zone "midominio.com" {
+    type master;
+    file "/etc/bind/zones/db.midominio.com";
+};
+
+zone "1.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/rev.1.168.192.db";
+};

@@ -8,3 +8,4 @@ $TTL 604800
 
 @       IN  NS      midominio.com.
 10      IN  PTR     midominio.com.
+10      IN  PTR     www.midominio.com.

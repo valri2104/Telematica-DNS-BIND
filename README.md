@@ -155,3 +155,4 @@ Este proyecto demostró cómo implementar un servidor DNS local en un entorno WS
 
 ## Anexos
 - Capturas de pantalla: https://github.com/valri2104/Telematica-DNS-BIND/wiki/Capturas-de-pantalla
+- Videos: https://github.com/valri2104/Telematica-DNS-BIND/wiki/Videos

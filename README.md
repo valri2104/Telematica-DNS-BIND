@@ -135,6 +135,47 @@ dig @localhost -x 192.168.1.10
 
 El modo `chroot` en BIND permite ejecutar el servicio en un entorno restringido del sistema de archivos, lo que refuerza la seguridad del servidor DNS al limitar el acceso del proceso solo a archivos y directorios esenciales para su funcionamiento.
 
+### Configuración en sistemas Linux:
+Suponiendo que ya se tiene instalado BIND y las herramientas necesarias:
+
+**1. Crear estructura de directorio chroot:**
+```bash
+sudo mkdir -p /var/named/chroot/{etc,dev,var/cache/bind,var/run/named,var/log}
+```
+
+**2. Copiar archivos de configuración:**
+```bash
+sudo cp /etc/bind/* /var/named/chroot/etc/
+```
+
+**3. Crear nodos de dispositivos necesarios:**
+```bash
+sudo mknod /var/named/chroot/dev/null c 1 3
+sudo mknod /var/named/chroot/dev/random c 1 8
+sudo chmod 666 /var/named/chroot/dev/{null,random}
+```
+
+**4. Modificar archivos de servicio systemd (opcional):**
+```bash
+sudo systemctl edit bind9
+```
+Agregar estas líneas:
+```bash
+[Service]
+ExecStart=
+ExecStart=/usr/sbin/named -u bind -t /var/named/chroot
+```
+Luego:
+```bash
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+```
+
+**5. Reiniciar BIND:**
+```bash
+sudo systemctl restart bind9
+```
+
 ### Ventajas de usar `chroot`:
 - **Seguridad mejorada**: si el servicio BIND es comprometido, el atacante tiene acceso limitado solo al entorno `chroot`.
 - **Aislamiento del proceso**: ayuda a contener los efectos de fallos o errores de configuración.

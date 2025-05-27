@@ -10,5 +10,5 @@ $TTL	604800
 			 604800 )	; Negative Cache TTL
 ;
 @	IN	NS	midominio.com.
-10	IN	PTR	nombre.midominio.com.
-nombre  IN      A       192.168.1.10
+10	IN	PTR	www.midominio.com.
+www     IN      A       192.168.1.10

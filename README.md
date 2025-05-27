@@ -99,7 +99,13 @@ sudo systemctl restart bind9
 
 ### 6. Probar el Servidor DNS
 
-#### a. Usar `dig`
+### a. Verificar el estado del servicio
+
+```bash
+sudo systemctl status bind9
+```
+
+#### b. Usar `dig`
 
 ```bash
 dig @localhost midominio.com
@@ -116,12 +122,31 @@ dig @localhost -x 192.168.1.10
 - Creación de zonas directas e inversas personalizadas.
 - Resolución de nombres y direcciones IP de manera local.
 - Verificación de archivos y pruebas exitosas con `dig`.
+- Uso de WSL2 y Visual Studio Code como entorno de trabajo eficiente.
 
 ### No logrados
 
 - Configuración para resolución externa desde redes fuera del entorno WSL.
+- No se implementó `chroot` debido a limitaciones propias del entorno WSL2.
 
 ---
+
+## Configuración de BIND en modo chroot (Información Adicional)
+
+El modo `chroot` en BIND permite ejecutar el servicio en un entorno restringido del sistema de archivos, lo que refuerza la seguridad del servidor DNS al limitar el acceso del proceso solo a archivos y directorios esenciales para su funcionamiento.
+
+### Ventajas de usar `chroot`:
+- **Seguridad mejorada**: si el servicio BIND es comprometido, el atacante tiene acceso limitado solo al entorno `chroot`.
+- **Aislamiento del proceso**: ayuda a contener los efectos de fallos o errores de configuración.
+
+### ¿Por qué no es común usar `chroot` en WSL2?
+
+Aunque WSL2 tiene un kernel real y ofrece mayor compatibilidad con Linux, sigue siendo una capa de virtualización sobre Windows. Las rutas del sistema de archivos están integradas con Windows, y algunas operaciones del sistema como `pivot_root` y el manejo avanzado de `mount namespaces` que utiliza `chroot` pueden no funcionar de forma confiable. Además:
+
+- WSL no arranca como un sistema operativo real con `/init` y niveles de ejecución clásicos.
+- No está diseñado para entornos de producción, sino para desarrollo y pruebas.
+
+Por estas razones, aunque técnicamente es posible configurar `chroot`, no es práctico ni recomendado en WSL2.
 
 ## Conclusiones
 
